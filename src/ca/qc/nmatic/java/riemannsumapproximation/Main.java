@@ -6,17 +6,50 @@
  */
 package ca.qc.nmatic.java.riemannsumapproximation;
 
+import java.lang.Math;
 /**
  *
  * @author Victor Babin
  */
 public class Main {
 
+    public static final int K = 0;
+//    public static final int N = 100000000;
+    public static final int N = 15;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        double[] funcX = new double[8];
+        double sum;
+        fillTestFunction(funcX);
+        sum = getSum(0, 5, funcX);
+        System.out.println(sum);
+        
     }
     
+    /**
+     * @param a borne inférieure
+     * @param b borne supérieure
+     * @param funcX the function in question
+     * @return result for a sum
+     */
+    public static double getSum(int a, int b, double[] funcX) {
+        if (b > a){
+            double result = 0;
+            double delX = (b - a)/N;
+            for (int i = a; i <= b; i++) {
+                result += (funcX[i] * delX);
+            }
+            return result;
+        } else {
+            return 0;
+        }
+    }
+    
+    public static void fillTestFunction(double[] funcX){
+        for (int i = 0; i < 8; i++){
+            funcX[i] = Math.pow(i, 2);
+        }
+    }
 }
