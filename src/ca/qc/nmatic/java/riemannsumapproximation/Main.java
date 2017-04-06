@@ -7,6 +7,7 @@
 package ca.qc.nmatic.java.riemannsumapproximation;
 
 import java.lang.Math;
+
 /**
  *
  * @author Victor Babin
@@ -14,8 +15,9 @@ import java.lang.Math;
 public class Main {
 
     public static final int K = 0;
-//    public static final int N = 100000000;
-    public static final int N = 15;
+    public static final int N = 100;
+    // public static final int N = 15;
+
     /**
      * @param args the command line arguments
      */
@@ -23,11 +25,10 @@ public class Main {
         double[] funcX = new double[8];
         double sum;
         fillTestFunction(funcX);
-        sum = getSum(0, 5, funcX);
+        sum = getSum(0, 100, funcX);
         System.out.println(sum);
-        
     }
-    
+
     /**
      * @param a borne inférieure
      * @param b borne supérieure
@@ -35,21 +36,25 @@ public class Main {
      * @return result for a sum
      */
     public static double getSum(int a, int b, double[] funcX) {
-        if (b > a){
+        if (b > a) {
             double result = 0;
-            double delX = (b - a)/N;
+            double delX = (b - a) / N;
             for (int i = a; i <= b; i++) {
-                result += (funcX[i] * delX);
+                result += (funcX(i, 2) * delX);
             }
             return result;
         } else {
             return 0;
         }
     }
-    
-    public static void fillTestFunction(double[] funcX){
-        for (int i = 0; i < 8; i++){
+
+    public static void fillTestFunction(double[] funcX) {
+        for (int i = 0; i < 8; i++) {
             funcX[i] = Math.pow(i, 2);
         }
+    }
+
+    public static double funcX(double x, double puissance) {
+        return Math.pow(x, puissance);
     }
 }
